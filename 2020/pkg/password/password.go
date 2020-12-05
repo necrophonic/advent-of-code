@@ -1,21 +1,23 @@
-package main
+package password
 
 import (
 	"bufio"
-	"fmt"
 	"log"
 	"os"
 	"regexp"
 	"strconv"
 )
 
+// DataFile defines where to read input data from
+var DataFile = "data/password.txt"
+
 var re = regexp.MustCompile(`(\d+)-(\d+) (.): (.+)`)
 
-func main() {
-
-	f, err := os.Open("day-2/input.txt")
+// Answer provides the day's answers
+func Answer() (int, int, error) {
+	f, err := os.Open(DataFile)
 	if err != nil {
-		log.Fatal(err)
+		return 0, 0, err
 	}
 	defer f.Close()
 
@@ -34,8 +36,7 @@ func main() {
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err)
 	}
-	fmt.Printf("Answer to day 2 part 1 is %d\n", numValidPart1)
-	fmt.Printf("Answer to day 2 part 2 is %d\n", numValidPart2)
+	return numValidPart1, numValidPart2, nil
 }
 
 func passwordValidPart1(password string, letter rune, min, max int) int {

@@ -1,22 +1,22 @@
-package main
+package toboggan
 
 import (
 	"bytes"
-	"fmt"
 	"io/ioutil"
-	"log"
 )
 
-func main() {
-	data, err := ioutil.ReadFile("day-3/input.txt")
+// DataFile defines where to read input data from
+var DataFile = "data/toboggan.txt"
+
+// Answer provides the day's answers
+func Answer() (int, int, error) {
+	data, err := ioutil.ReadFile(DataFile)
 	if err != nil {
-		log.Fatal(err)
+		return 0, 0, err
 	}
 
 	rows := bytes.Split(data, []byte("\n"))
-
-	fmt.Printf("Answer to day 3 part 1 is %d\n", runPart1(rows))
-	fmt.Printf("Answer to day 3 part 2 is %d\n", runPart2(rows))
+	return runPart1(rows), runPart2(rows), nil
 }
 
 func runPart1(rows [][]byte) (numTrees int) {
