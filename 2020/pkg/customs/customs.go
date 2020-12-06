@@ -14,7 +14,6 @@ func Answer() (int, int, error) {
 	if err != nil {
 		return 0, 0, err
 	}
-
 	data = bytes.TrimRight(data, "\n")
 
 	answerCountPart1 := 0
@@ -42,20 +41,15 @@ func CountAnyAnswered(group []byte) int {
 
 // CountAllAnswered returns the number of questions
 // answered by ALL in the group.
-func CountAllAnswered(group []byte) int {
+func CountAllAnswered(group []byte) (all int) {
 	answers := make(map[byte]int)
 	people := bytes.Split(group, []byte("\n"))
 	for _, person := range people {
 		for _, answer := range person {
-			answers[answer]++
+			if answers[answer]++; answers[answer] == len(people) {
+				all++
+			}
 		}
 	}
-	allCount := 0
-	groupSize := len(people)
-	for _, count := range answers {
-		if count == groupSize {
-			allCount++
-		}
-	}
-	return allCount
+	return all
 }
