@@ -17,7 +17,7 @@ go test ./...
 - [Day 3 - toboggan](pkg/toboggan)
 - [Day 4 - passport](pkg/passport)
 - [Day 5 - boarding](pkg/boarding)
-- Day 6
+- [Day 6 - customs](pkg/customs)
 - Day 7
 - Day 8
 - Day 9
