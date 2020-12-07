@@ -29,9 +29,5 @@ func answer(day int, f func() (int, int, error)) {
 	if err != nil {
 		log.Fatalf("error when answering day %d: %v", day, err)
 	}
-	print(day, p1, p2)
-}
-
-func print(day, part1, part2 int) {
-	fmt.Printf("- [day %2d] part 1: %-12d part 2: %-12d\n", day, part1, part2)
+	fmt.Printf("- [day %2d] part 1: %-12d part 2: %-12d\n", day, p1, p2)
 }
