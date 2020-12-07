@@ -1,4 +1,4 @@
-# 2020
+# 2019
 
 To run all, use:
 
@@ -12,8 +12,8 @@ Run unit tests with:
 go test ./...
 ```
 
-- [Day 1 - expenses](pkg/expenses)
-- Day 2
+- [Day 1 - fuel](pkg/fuel)
+- [Day 2 - computer](pkg/computer)
 - Day 3
 - Day 4
 - Day 5

@@ -3,12 +3,15 @@ package main
 import (
 	"fmt"
 	"log"
+
+	"github.com/necrophonic/advent-of-code/2019/pkg/computer"
+	"github.com/necrophonic/advent-of-code/2019/pkg/fuel"
 )
 
 func main() {
 	fmt.Println("Answers:")
-	noAnswer(1)
-	noAnswer(2)
+	answer(1, fuel.Answer)
+	answer(2, computer.Answer)
 	noAnswer(3)
 	noAnswer(4)
 	noAnswer(5)
