@@ -31,61 +31,87 @@ func Answer() (int, int, error) {
 	scanner.Scan()
 	wire2 := scanner.Text()
 
-	p1, err := FindIntersection(wire1, wire2)
+	intersections, err := FindIntersections(wire1, wire2)
 	if err != nil {
 		return 0, 0, errors.WithMessage(err, "failed to trace wires")
 	}
 
-	return p1.Distance(), -1, nil
+	return FindNearestIntersection(intersections).Distance(), FindShortestIntersection(intersections), nil
 }
 
-// FindIntersection finds the closest wire intersection
-func FindIntersection(w1, w2 string) (Point, error) {
+// FindNearestIntersection finds the closest wire intersection
+func FindNearestIntersection(intersections map[string][]*Point) *Point {
+	closestPoint := &Point{99999, 99999, 0}
+	for _, points := range intersections {
+		if points[0].Distance() < closestPoint.Distance() {
+			closestPoint = points[0]
+		}
+	}
+	return closestPoint
+}
+
+// FindShortestIntersection finds the intersection with the fewest steps
+func FindShortestIntersection(intersections map[string][]*Point) int {
+	shortest := 99999
+	for _, points := range intersections {
+		steps := points[0].Step + points[1].Step
+		if steps < shortest {
+			shortest = steps
+		}
+	}
+	return shortest
+}
+
+// FindIntersections finds all wire intersections
+func FindIntersections(w1, w2 string) (map[string][]*Point, error) {
 
 	// Trace the first wire
-	wiring := make(map[string]Point)
+	wiring := make(map[string][]*Point)
 	cx := 0
 	cy := 0
 
-	for i, step := range strings.Split(w1, ",") {
+	i := 0
+	for _, step := range strings.Split(w1, ",") {
 		direction, distance, err := parseDirection(step)
 		if err != nil {
-			return Point{}, err
+			return nil, err
 		}
 
 		mx, my := moveMods(direction)
 		for m := 0; m < distance; m++ {
 			cx += mx
 			cy += my
-			wiring[fmt.Sprintf("%d-%d", cx, cy)] = Point{cx, cy, i}
+			i++
+			wiring[fmt.Sprintf("%d-%d", cx, cy)] = []*Point{{cx, cy, i}, nil}
 		}
 	}
 
 	// Trace the second wire
-	closestPoint := Point{99999, 99999, 0}
 	cx = 0
 	cy = 0
+	i = 0
+
+	intersections := make(map[string][]*Point)
 
 	for _, step := range strings.Split(w2, ",") {
 		direction, distance, err := parseDirection(step)
 		if err != nil {
-			return Point{}, err
+			return nil, err
 		}
 
 		mx, my := moveMods(direction)
 		for m := 0; m < distance; m++ {
 			cx += mx
 			cy += my
+			i++
 			key := fmt.Sprintf("%d-%d", cx, cy)
 			if p, exists := wiring[key]; exists {
-				if closestPoint.Distance() > p.Distance() {
-					closestPoint = p
-				}
+				intersections[key] = []*Point{p[0], {cx, cy, i}}
 			}
 		}
 	}
 
-	return closestPoint, nil
+	return intersections, nil
 }
 
 func moveMods(direction string) (x, y int) {
