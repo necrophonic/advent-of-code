@@ -13,9 +13,8 @@ import (
 	"github.com/necrophonic/advent-of-code/2020/pkg/toboggan"
 )
 
-var frmt = "The answers to day %d are, part 1: %d\n                          part 2: %d\n\n"
-
 func main() {
+	fmt.Println("Answers:")
 	answer(1, expenses.Answer)
 	answer(2, password.Answer)
 	answer(3, toboggan.Answer)
@@ -30,5 +29,9 @@ func answer(day int, f func() (int, int, error)) {
 	if err != nil {
 		log.Fatalf("error when answering day %d: %v", day, err)
 	}
-	fmt.Printf(frmt, day, p1, p2)
+	print(day, p1, p2)
+}
+
+func print(day, part1, part2 int) {
+	fmt.Printf("- [day %2d] part 1: %-12d part 2: %-12d\n", day, part1, part2)
 }

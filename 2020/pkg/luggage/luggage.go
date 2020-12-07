@@ -2,11 +2,12 @@ package luggage
 
 import (
 	"bytes"
-	"fmt"
 	"io/ioutil"
 	"regexp"
 	"strconv"
 	"strings"
+
+	"github.com/pkg/errors"
 )
 
 // DataFile defines where to read input data from
@@ -22,7 +23,10 @@ func Answer() (int, int, error) {
 		return 0, 0, err
 	}
 	rules := bytes.Split(data, []byte("\n"))
-	bags := ParseRules(rules)
+	bags, err := ParseRules(rules)
+	if err != nil {
+		return 0, 0, errors.WithMessage(err, "failed to parse rules")
+	}
 
 	possible := make(BagMap)
 
@@ -61,7 +65,6 @@ func NumberBagsContained(name string, bags BagMap) int {
 func FindPossibleBags(findName string, possible BagMap, bags BagMap) int {
 	for bagName, bag := range bags {
 		if bag.CanContain(findName) {
-			fmt.Printf("%s can contain %s\n", bagName, findName)
 			if _, exists := possible[bagName]; !exists {
 				FindPossibleBags(bagName, possible, bags)
 			}
@@ -74,7 +77,7 @@ func FindPossibleBags(findName string, possible BagMap, bags BagMap) int {
 var reRule = regexp.MustCompile(`(\d+) (\w+ \w+)(?:, |)`)
 
 // ParseRules creates a set of bags from the given rules
-func ParseRules(rules [][]byte) BagMap {
+func ParseRules(rules [][]byte) (BagMap, error) {
 	bags := make(BagMap)
 	for _, rule := range rules {
 		if len(rule) == 0 {
@@ -93,13 +96,11 @@ func ParseRules(rules [][]byte) BagMap {
 		for _, match := range matches {
 			amount, err := strconv.Atoi(match[1])
 			if err != nil {
-				// Don't like to panic, but in this case if this
-				// fails then things are corrupt and we can't continue.
-				panic(err)
+				return nil, err
 			}
 			bag.Contains[match[2]] = amount
 		}
 		bags[bag.Name] = bag
 	}
-	return bags
+	return bags, nil
 }

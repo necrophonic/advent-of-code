@@ -44,7 +44,8 @@ func TestParseRules(t *testing.T) {
 		"wavy magenta":    {"wavy magenta", map[string]int{"vibrant crimson": 2, "mirrored teal": 3, "shiny lime": 1}},
 	}
 
-	bags := luggage.ParseRules(rules)
+	bags, err := luggage.ParseRules(rules)
+	assert.NoError(t, err)
 	assert.Equal(t, expected, bags)
 }
 
@@ -59,7 +60,7 @@ func TestNumberBagsContained(t *testing.T) {
 		[]byte("dark violet bags contain no other bags."),
 	}
 
-	bags := luggage.ParseRules(rules)
+	bags, _ := luggage.ParseRules(rules)
 	count := luggage.NumberBagsContained("shiny gold", bags) - 1
 	assert.Equal(t, 126, count)
 }
