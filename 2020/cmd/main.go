@@ -22,6 +22,23 @@ func main() {
 	answer(5, boarding.Answer)
 	answer(6, customs.Answer)
 	answer(7, luggage.Answer)
+	noAnswer(8)
+	noAnswer(9)
+	noAnswer(10)
+	noAnswer(11)
+	noAnswer(12)
+	noAnswer(13)
+	noAnswer(14)
+	noAnswer(15)
+	noAnswer(16)
+	noAnswer(17)
+	noAnswer(18)
+	noAnswer(19)
+	noAnswer(20)
+	noAnswer(21)
+	noAnswer(22)
+	noAnswer(23)
+	noAnswer(24)
 }
 
 func answer(day int, f func() (int, int, error)) {
@@ -30,4 +47,8 @@ func answer(day int, f func() (int, int, error)) {
 		log.Fatalf("error when answering day %d: %v", day, err)
 	}
 	fmt.Printf("- [day %2d] part 1: %-12d part 2: %-12d\n", day, p1, p2)
+}
+
+func noAnswer(day int) {
+	fmt.Printf("- [day %2d] no answer yet\n", day)
 }
