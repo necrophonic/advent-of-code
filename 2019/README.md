@@ -14,7 +14,7 @@ go test ./...
 
 - [Day 1 - fuel](pkg/fuel)
 - [Day 2 - computer](pkg/computer)
-- Day 3
+- [Day 3 - wires](pkg/wires)
 - Day 4
 - Day 5
 - Day 6
