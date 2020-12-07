@@ -18,7 +18,7 @@ go test ./...
 - [Day 4 - passport](pkg/passport)
 - [Day 5 - boarding](pkg/boarding)
 - [Day 6 - customs](pkg/customs)
-- Day 7
+- [Day 7 - luggage](pkg/luggage)
 - Day 8
 - Day 9
 - Day 10
