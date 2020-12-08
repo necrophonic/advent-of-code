@@ -15,22 +15,22 @@ func TestAnswer(t *testing.T) {
 	assert.Equal(t, 4967, p2, "Part 2")
 }
 
-// func TestRun(t *testing.T) {
-// 	type tc struct {
-// 		program  []int
-// 		expected int
-// 	}
+func TestRun(t *testing.T) {
+	type tc struct {
+		program  []int
+		expected int
+	}
 
-// 	tcs := []tc{
-// 		{[]int{1, 0, 0, 0, 99}, 2},
-// 		{[]int{2, 3, 0, 3, 99}, 2},
-// 		{[]int{2, 4, 4, 5, 99, 0}, 2},
-// 		{[]int{1, 1, 1, 4, 99, 5, 6, 0, 99}, 30},
-// 	}
+	tcs := []tc{
+		{[]int{1, 0, 0, 0, 99}, 2},
+		{[]int{2, 3, 0, 3, 99}, 2},
+		{[]int{2, 4, 4, 5, 99, 0}, 2},
+		{[]int{1, 1, 1, 4, 99, 5, 6, 0, 99}, 30},
+	}
 
-// 	for _, test := range tcs {
-// 		output, err := computer.Run(test.program)
-// 		assert.NoError(t, err)
-// 		assert.Equal(t, test.expected, output)
-// 	}
-// }
+	for _, test := range tcs {
+		output, err := computer.Run(test.program)
+		assert.NoError(t, err)
+		assert.Equal(t, test.expected, output)
+	}
+}

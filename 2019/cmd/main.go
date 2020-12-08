@@ -6,13 +6,16 @@ import (
 
 	"github.com/necrophonic/advent-of-code/2019/pkg/computer"
 	"github.com/necrophonic/advent-of-code/2019/pkg/fuel"
+	"github.com/necrophonic/advent-of-code/2019/pkg/password"
+	"github.com/necrophonic/advent-of-code/2019/pkg/wires"
 )
 
 func main() {
 	fmt.Println("Answers:")
 	answer(1, fuel.Answer)
 	answer(2, computer.Answer)
-	noAnswer(3)
+	answer(3, wires.Answer)
+	answer(4, password.Answer)
 	noAnswer(4)
 	noAnswer(5)
 	noAnswer(6)
