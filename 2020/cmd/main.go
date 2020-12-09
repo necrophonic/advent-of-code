@@ -6,7 +6,9 @@ import (
 
 	"github.com/necrophonic/advent-of-code/2020/pkg/boarding"
 	"github.com/necrophonic/advent-of-code/2020/pkg/customs"
+	"github.com/necrophonic/advent-of-code/2020/pkg/encoding"
 	"github.com/necrophonic/advent-of-code/2020/pkg/expenses"
+	"github.com/necrophonic/advent-of-code/2020/pkg/game"
 	"github.com/necrophonic/advent-of-code/2020/pkg/luggage"
 	"github.com/necrophonic/advent-of-code/2020/pkg/passport"
 	"github.com/necrophonic/advent-of-code/2020/pkg/password"
@@ -22,8 +24,8 @@ func main() {
 	answer(5, boarding.Answer)
 	answer(6, customs.Answer)
 	answer(7, luggage.Answer)
-	noAnswer(8)
-	noAnswer(9)
+	answer(8, game.Answer)
+	answer(9, encoding.Answer)
 	noAnswer(10)
 	noAnswer(11)
 	noAnswer(12)
