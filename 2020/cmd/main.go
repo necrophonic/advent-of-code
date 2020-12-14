@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 
+	"github.com/necrophonic/advent-of-code/2020/pkg/adaptor"
 	"github.com/necrophonic/advent-of-code/2020/pkg/boarding"
 	"github.com/necrophonic/advent-of-code/2020/pkg/customs"
 	"github.com/necrophonic/advent-of-code/2020/pkg/encoding"
@@ -26,9 +27,9 @@ func main() {
 	answer(7, luggage.Answer)
 	answer(8, game.Answer)
 	answer(9, encoding.Answer)
-	noAnswer(10)
+	answer(10, adaptor.Answer)
 	noAnswer(11)
-	noAnswer(12)
+	answer(12, encoding.Answer)
 	noAnswer(13)
 	noAnswer(14)
 	noAnswer(15)
