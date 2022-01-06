@@ -18,7 +18,7 @@ func (*SyntaxScoring) Name() string {
 func (s *SyntaxScoring) Answer() (int, int, error) {
 	data, err := advent.LoadData("syntax-scoring.txt")
 	if err != nil {
-		return -1, -1, nil
+		return -1, -1, err
 	}
 	s.Data = data
 

@@ -3,7 +3,6 @@ package day
 import (
 	"strings"
 
-	"github.com/davecgh/go-spew/spew"
 	"github.com/necrophonic/advent-of-code/2021/go/pkg/advent"
 	"github.com/pkg/errors"
 )
@@ -24,11 +23,11 @@ func (s *SevenSegment) Answer() (int, int, error) {
 	if err != nil {
 		return -1, -1, errors.WithMessage(err, "part 1 failed")
 	}
-	ans2, err := s.Part2(data)
-	if err != nil {
-		return -1, -1, errors.WithMessage(err, "part 2 failed")
-	}
-	return ans1, ans2, nil
+	// ans2, err := s.Part2(data)
+	// if err != nil {
+	// 	return -1, -1, errors.WithMessage(err, "part 2 failed")
+	// }
+	return ans1, -1, nil
 }
 
 func (s *SevenSegment) Part1(data []string) (int, error) {
@@ -82,7 +81,7 @@ func (s *SevenSegment) Part2(data []string) (int, error) {
 		}
 		segments["e"] = s.DiffDigits(digits[4], s.DiffDigits(fives...))
 
-		spew.Dump(segments)
+		// spew.Dump(segments)
 	}
 
 	return total, nil

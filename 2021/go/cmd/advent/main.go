@@ -22,6 +22,9 @@ func main() {
 	run(6, &day.Lanternfish{})
 	run(7, &day.Whales{})
 	run(8, &day.SevenSegment{})
+	run(9, &day.SmokeBasin{})
+	run(10, &day.SyntaxScoring{})
+	run(11, &day.DumboOctopus{})
 }
 
 func run(number int8, day Day) {
