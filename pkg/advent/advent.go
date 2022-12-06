@@ -25,7 +25,7 @@ type Day interface {
 func Run(number int8, day Day) {
 	part1, part2, err := day.Answer()
 	if err != nil {
-		fmt.Printf(color.RedString("- [%2d] %30s errored: %v\n"), number, day.Name(), err)
+		fmt.Printf(color.RedString("- [%2d] %35s errored: %v\n"), number, day.Name(), err)
 		return
 	}
 
@@ -38,7 +38,7 @@ func Run(number int8, day Day) {
 		ans2 = color.GreenString(strconv.Itoa(part2))
 	}
 
-	fmt.Printf("- [%2d] %30s part 1: %-20s part 2: %-20s\n", number, color.BlueString(day.Name()), ans1, ans2)
+	fmt.Printf("- [%2d] %35s part 1: %-20s part 2: %-20s\n", number, color.BlueString(day.Name()), ans1, ans2)
 }
 
 func OpenFile(fileName string) (*os.File, error) {

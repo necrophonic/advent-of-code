@@ -33,11 +33,6 @@ func (r Rucksack) Part2(rucksacks []string) int {
 	for i := 0; i < len(rucksacks)-2; i += 3 {
 		group := rucksacks[i : i+3]
 		sum += r.ScoreDuplicates(r.FindDuplicates(group...))
-		// 	debug.Print("Group: %v", group)
-		// 	groupDupes := make([]string, 3)
-		// 	for j := 0; j < 3; j++ {
-		// 		groupDupes[j] = r.FindDuplicates(r.SplitCompartments(group[j]))
-		// 	}
 	}
 	return sum
 }

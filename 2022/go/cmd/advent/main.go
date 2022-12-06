@@ -8,5 +8,6 @@ import (
 func main() {
 	advent.Run(1, &day.Calorie{})
 	advent.Run(2, &day.RockPaperScissors{})
-	advent.Run(2, &day.Rucksack{})
+	advent.Run(3, &day.Rucksack{})
+	advent.Run(4, &day.CampCleanup{})
 }
