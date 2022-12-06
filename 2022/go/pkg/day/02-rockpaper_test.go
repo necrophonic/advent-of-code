@@ -11,7 +11,7 @@ func TestRockPaperScissors_Answer(t *testing.T) {
 	part1, part2, err := day.RockPaperScissors{}.Answer()
 	assert.NoError(t, err)
 	assert.Equal(t, 11767, part1)
-	assert.Equal(t, -1, part2)
+	assert.Equal(t, 13886, part2)
 }
 
 func TestRockPaperScissors_Part1(t *testing.T) {
