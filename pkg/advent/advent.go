@@ -145,6 +145,8 @@ func LoadIntData(file string) ([]int, error) {
 	return data, nil
 }
 
+// ByteToInt converts a single digit as a byte into a real int
+// e.g '1' -> 1
 func ByteToInt(b byte) int {
 	return int(b) - 48
 }

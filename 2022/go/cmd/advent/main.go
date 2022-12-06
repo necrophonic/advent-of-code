@@ -7,4 +7,5 @@ import (
 
 func main() {
 	advent.Run(1, &day.Calorie{})
+	advent.Run(2, &day.RockPaperScissors{})
 }
