@@ -4,29 +4,23 @@ import (
 	"testing"
 
 	trebuchet "github.com/necrohonic/advent-of-code/2023/go/01-trebuchet"
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
+	"github.com/necrohonic/advent-of-code/advent"
+	"github.com/necrohonic/advent-of-code/advent/data"
 )
 
-func TestPart1(t *testing.T) {
-	treb := &trebuchet.Trebuchet{
-		D: []string{
-			"1abc2",
-			"pqr3stu8vwx",
-			"a1b2c3d4e5f",
-			"treb7uchet",
-		},
-	}
-	ans, err := treb.Part1()
-	require.NoError(t, err, "Should not error")
-	require.IsType(t, ans, int(0))
-	assert.Equal(t, 142, ans.(int), "Expected answer")
-}
-
-func TestPart2(t *testing.T) {
-	t.Run("Standard test", func(t *testing.T) {
-		treb := &trebuchet.Trebuchet{
-			D: []string{
+func TestDay(t *testing.T) {
+	advent.RunTest(t,
+		&advent.TestOpts{
+			N:   "2",
+			Day: &trebuchet.Trebuchet{},
+			InPart1: data.Data{
+				"1abc2",
+				"pqr3stu8vwx",
+				"a1b2c3d4e5f",
+				"treb7uchet",
+			},
+			ExpectedPart1: 142,
+			InPart2: data.Data{
 				"two1nine",
 				"eightwothree",
 				"abcone2threexyz",
@@ -35,22 +29,7 @@ func TestPart2(t *testing.T) {
 				"zoneight234",
 				"7pqrstsixteen",
 			},
-		}
-		ans, err := treb.Part2()
-		require.NoError(t, err, "Should not error")
-		require.IsType(t, ans, int(0))
-		assert.Equal(t, 281, ans.(int), "Expected answer")
-	})
-
-	t.Run("Overlapping numbers", func(t *testing.T) {
-		treb := &trebuchet.Trebuchet{
-			D: []string{
-				"eightfive37688eighteightwof",
-			},
-		}
-		ans, err := treb.Part2()
-		require.NoError(t, err, "Should not error")
-		require.IsType(t, ans, int(0))
-		assert.Equal(t, 82, ans.(int), "Expected answer")
-	})
+			ExpectedPart2: 281,
+		},
+	)
 }

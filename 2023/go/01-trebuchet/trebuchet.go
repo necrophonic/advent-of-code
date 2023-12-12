@@ -10,7 +10,7 @@ import (
 )
 
 type Trebuchet struct {
-	D data.Data
+	data.Store
 }
 
 func (t *Trebuchet) Init() error {

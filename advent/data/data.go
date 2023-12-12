@@ -66,3 +66,11 @@ func Load(file string) (Data, error) {
 	}
 	return data, nil
 }
+
+type Store struct {
+	D Data
+}
+
+func (d *Store) SetData(data Data) {
+	d.D = data
+}

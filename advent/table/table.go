@@ -4,11 +4,13 @@ import (
 	"fmt"
 	"sort"
 	"strings"
+	"time"
 )
 
 type Row struct {
 	Day    int
 	V1, V2 any
+	D      time.Duration
 	Err    error
 }
 
@@ -27,13 +29,14 @@ func New() *Table {
 	}
 }
 
-func (t *Table) Add(i int, v1, v2 any, err error) {
+func (t *Table) Add(i int, v1, v2 any, dur time.Duration, err error) {
 	if err != nil {
 		t.hadError = true
 		t.rows[i] = Row{
 			Day: i,
 			V1:  "n/a",
 			V2:  "n/a",
+			D:   dur,
 			Err: err,
 		}
 		if l := len(err.Error()); l > t.longestError {
@@ -45,6 +48,7 @@ func (t *Table) Add(i int, v1, v2 any, err error) {
 		Day: i,
 		V1:  v1,
 		V2:  v2,
+		D:   dur,
 		Err: err,
 	}
 
@@ -67,6 +71,7 @@ func (t *Table) String() string {
 
 	sb.WriteString(fmt.Sprintf(p1fmt, "Part 1"))
 	sb.WriteString(fmt.Sprintf(p2fmt, "Part 2"))
+	sb.WriteString(" Duration |")
 	if t.hadError {
 		sb.WriteString(" ERROR")
 	}
@@ -74,6 +79,7 @@ func (t *Table) String() string {
 	sb.WriteString("+-----+")
 	sb.WriteString(strings.Repeat("-", t.longest1+2) + "+")
 	sb.WriteString(strings.Repeat("-", t.longest2+2) + "+")
+	sb.WriteString("----------+")
 	if t.hadError {
 		sb.WriteString(strings.Repeat("-", t.longestError+2) + "+")
 	}
@@ -90,6 +96,7 @@ func (t *Table) String() string {
 		sb.WriteString(fmt.Sprintf("|  %2d |", r.Day))
 		sb.WriteString(fmt.Sprintf(p1fmt, r.V1))
 		sb.WriteString(fmt.Sprintf(p2fmt, r.V2))
+		sb.WriteString(fmt.Sprintf(" %d ms", r.D.Milliseconds()))
 		if r.Err != nil {
 			sb.WriteString(" " + r.Err.Error())
 		}
